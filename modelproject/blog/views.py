@@ -1,13 +1,18 @@
 from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import Blog
+from .permissions import IsOwnerOrReadOnly
 from .serializers import BlogSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 
 
 @api_view(['GET', 'POST'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def blog_list(request):
     if request.method == 'GET':
         blogs = Blog.objects.all()
@@ -22,6 +27,8 @@ def blog_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsOwnerOrReadOnly])
 def blog_detail(request, pk):
     try:
         blog = Blog.objects.get(pk=pk)
