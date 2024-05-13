@@ -31,8 +31,11 @@ services:
       - web
     networks:
       - server
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+
   certbot:
     image: certbot/certbot
+    container_name: certbot
     restart: unless-stopped
     volumes:
       - ./cert/certbot/conf:/etc/letsencrypt
