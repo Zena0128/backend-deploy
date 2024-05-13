@@ -25,7 +25,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - django_container
+      - web
     networks:
       - server
 
