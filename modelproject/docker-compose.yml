@@ -1,8 +1,8 @@
 version: '3'
 services:
   web:
-    image: django-project
-    container_name: django-container
+    image: django_project
+    container_name: django_container
     command: bash -c "gunicorn modelproject.wsgi:application -b 0.0.0.0:8000" # 서버 실행
     ports:
       - "8000:8000"
@@ -16,7 +16,7 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: nginx-container
+    container_name: nginx_container
     volumes:
       - ./nginx.default.conf:/etc/nginx/conf.d/default.conf
       - ./static:/static
@@ -25,7 +25,7 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - django-container
+      - django_container
     networks:
       - server
 
