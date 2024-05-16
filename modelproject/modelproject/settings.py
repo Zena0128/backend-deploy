@@ -31,6 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['hufs-mutsa-12th.store']
 
+CORS_ALLOWED_ORIGINS = [
+	'http://localhost:3000',
+    'https://localhost:3000',
+    'https://hufs-mutsa-12th.store',
+    'http://hufs-mutsa-12th.store',
+]
 
 # Application definition
 
