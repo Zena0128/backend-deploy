@@ -170,3 +170,7 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/django
+
+# ssl 인증서 관련
+cert/*
+init-letsencrypt.sh
